@@ -1,5 +1,5 @@
 # instagrando
-Repositório para a disciplina Tópicos Especiais de Desenvolvimento Móvel dos cursos de Informática do Ifpi - Campus Parnaíba.
+Projeto desenvolvido junto aos alunos da matéria de Tópicos Especiais em Desenvolvimento Móvel do Curso técnico subsequente/concomitante de Informática, módulo IV noite 2018.2. Ifpi - Campus Parnaíba.
 
 
 
