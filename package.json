@@ -1,8 +1,8 @@
 {
   "name": "instagrando",
   "version": "0.0.1",
-  "author": "Ionic Framework",
-  "homepage": "http://ionicframework.com/",
+  "author": "Tópicos Especiais em Desenvolvimento Móvel do Curso técnico subsequente/concomitante de Informática, módulo IV noite 2018.2. Ifpi - Campus Parnaíba",
+  "homepage": "https://github.com/denylsonmelo/instagrando",
   "private": true,
   "scripts": {
     "start": "ionic-app-scripts serve",
@@ -32,7 +32,8 @@
   },
   "devDependencies": {
     "@ionic/app-scripts": "3.1.11",
+    "@ionic/lab": "1.0.8",
     "typescript": "~2.6.2"
   },
-  "description": "An Ionic project"
+  "description": "Projeto desenvolvido junto aos alunos da matéria de Tópicos Especiais em Desenvolvimento Móvel do Curso técnico subsequente/concomitante de Informática, módulo IV noite 2018.2. Ifpi - Campus Parnaíba."
 }
