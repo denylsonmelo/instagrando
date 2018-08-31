@@ -1,0 +1,37 @@
+<ion-header>
+
+	<ion-navbar color="primary">
+		<ion-title>pagina header</ion-title>
+	</ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+
+	<div *ngIf="deveMostrarAlunos; else avisoSemAlunos">
+		<ion-list>
+			<button ion-item *ngFor="let aluno of alunos"> {{ aluno.id + " - " + aluno.nome }} </button>
+		</ion-list>
+	</div>
+	<ng-template #avisoSemAlunos>
+		<h2> nenhum aluno cadastrado </h2>
+	</ng-template>
+
+	<button ion-button (click)="mostrarAlunos()"> visualizar alunos</button>
+
+	<ion-item>
+		<ion-input type="text" placeholder="Nome do aluno" [value]="nomeNovoAluno" (keydown)="mudarNomeAluno($event)" ></ion-input>
+	</ion-item>
+
+	<button ion-button (click)="cadastrarAlunos()"> cadastrar alunos</button>
+	{{ nomeNovoAluno }}
+
+</ion-content>
+
+<ion-footer>
+	<ion-navbar color="primary">
+		<ion-title>pagina 1 footer</ion-title>
+	</ion-navbar>
+</ion-footer>
