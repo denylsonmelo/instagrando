@@ -10,16 +10,24 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-  selector: 'page-pagina-2',
-  templateUrl: 'pagina-2.html',
+	selector: 'page-pagina-2',
+	templateUrl: 'pagina-2.html',
 })
 export class Pagina_2Page {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+	deveMostrarAlunos: boolean = false;
+	alunos: Array<{ id: number, nome: string }>;
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad Pagina_2Page');
-  }
+	voltar() {
+		this.navCtrl.pop();
+	}
+
+	constructor(public navCtrl: NavController, public navParams: NavParams) {
+	}
+
+	ionViewDidLoad() {
+		this.alunos = JSON.parse(localStorage.getItem("listaAlunos")) || []
+		this.deveMostrarAlunos = this.alunos.length > 0 ? true : false;
+	}
 
 }

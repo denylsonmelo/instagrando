@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
+import { Pagina_2Page } from './../pagina-2/pagina-2';
+
 @IonicPage()
 @Component({
 	selector: 'page-pagina-1',
@@ -8,36 +10,29 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class Pagina_1Page {
 
-	variavelString: string = "algum texto";
-	variavelNumero: number = 654;
-	variavelNumeroComDecimal: number = 654.156;
-	deveMostrarAlunos: boolean = true;
 	nomeNovoAluno: string = "";
-	private contador: number = 5;
 
-	alunos: Array<{ id: number, nome: string }> = [
-		{ id: 1, nome: "luna" },
-		{ id: 2, nome: "geyssy" },
-		{ id: 3, nome: "juvenaldo" },
-		{ id: 4, nome: "cleu" },
-	];
+	cadastrarAlunos() {
+		let proximoId = Number.parseInt(localStorage.getItem("proximoId")) || 1;
+		let lista = JSON.parse(localStorage.getItem("listaAlunos")) || [];
 
-	cadastrarAlunos(){
-		this.alunos.push({
-			id: this.contador,
-			nome: this.nomeNovoAluno
-		});
+		lista.push(
+			{
+				id: proximoId,
+				nome: this.nomeNovoAluno
+			}
+		);
 
-		this.contador++;
+
+		localStorage.setItem("listaAlunos", JSON.stringify(lista));
+		localStorage.setItem("proximoId", (proximoId + 1).toString());
+
 		this.nomeNovoAluno = "";
-	}
 
-	mudarNomeAluno(event: any){
-		this.nomeNovoAluno = this.nomeNovoAluno + event.key;
 	}
 
 	mostrarAlunos() {
-		this.deveMostrarAlunos = !this.deveMostrarAlunos;
+		this.navCtrl.push(Pagina_2Page);
 	}
 
 
