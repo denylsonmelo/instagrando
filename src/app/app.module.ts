@@ -6,12 +6,13 @@ import { MyApp } from './app.component';
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
-import { Pagina_1Page } from './../pages/pagina-1/pagina-1';
-import { Pagina_2Page } from '../pages/pagina-2/pagina-2';
 import { TabsPage } from '../pages/tabs/tabs';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+
+import { ListagemPage } from '../pages/listagem/listagem';
+import { CadastroPage } from './../pages/cadastro/cadastro';
 
 @NgModule({
   declarations: [
@@ -19,23 +20,23 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     AboutPage,
     ContactPage,
 	HomePage,
-	Pagina_1Page,
-	Pagina_2Page,
-    TabsPage
-  ],
-  imports: [
-    BrowserModule,
+	TabsPage,
+	CadastroPage,
+	ListagemPage
+],
+imports: [
+	BrowserModule,
     IonicModule.forRoot(MyApp)
-  ],
-  bootstrap: [IonicApp],
-  entryComponents: [
-    MyApp,
+],
+bootstrap: [IonicApp],
+entryComponents: [
+	MyApp,
     AboutPage,
     ContactPage,
 	HomePage,
-	Pagina_1Page,
-	Pagina_2Page,
-    TabsPage
+    TabsPage,
+	CadastroPage,
+	ListagemPage
   ],
   providers: [
     StatusBar,

@@ -1,46 +1,45 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-import { Pagina_2Page } from './../pagina-2/pagina-2';
+import { Aluno } from './../../models/aluno.model';
 
 @IonicPage()
 @Component({
-	selector: 'page-pagina-1',
-	templateUrl: 'pagina-1.html',
+	selector: 'page-cadastro',
+	templateUrl: 'cadastro.html',
 })
-export class Pagina_1Page {
+export class CadastroPage {
 
-	nomeNovoAluno: string = "";
+	alunoASerCadastrado: Aluno;
 
 	cadastrarAlunos() {
 		let proximoId = Number.parseInt(localStorage.getItem("proximoId")) || 1;
 		let lista = JSON.parse(localStorage.getItem("listaAlunos")) || [];
 
-		lista.push(
-			{
-				id: proximoId,
-				nome: this.nomeNovoAluno
-			}
-		);
+		this.alunoASerCadastrado.id = proximoId;
+		lista.push(this.alunoASerCadastrado);
 
 
 		localStorage.setItem("listaAlunos", JSON.stringify(lista));
 		localStorage.setItem("proximoId", (proximoId + 1).toString());
 
-		this.nomeNovoAluno = "";
-
+		//this.inicializarAluno();
+		this.voltar();
 	}
 
-	mostrarAlunos() {
-		this.navCtrl.push(Pagina_2Page);
+	private voltar(){
+		this.navCtrl.pop();
 	}
 
+	private inicializarAluno(): void{
+		this.alunoASerCadastrado =  this.navParams.get("alunoASerEditado")  || new Aluno();
+	}
 
 	constructor(public navCtrl: NavController, public navParams: NavParams) {
 	}
 
-	ionViewDidLoad() {
-		console.log('ionViewDidLoad Pagina_1Page');
+	ngOnInit() {
+		this.inicializarAluno();
 	}
 
 }

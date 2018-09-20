@@ -1,0 +1,52 @@
+<ion-header>
+
+	<ion-navbar color="primary">
+		<ion-title>Cadastro de Alunos</ion-title>
+	</ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+	<ion-card>
+		<ion-card-content>
+			<ion-avatar>
+				<!--<img src="assets/imgs/logo.png">-->
+			</ion-avatar>
+
+			<ion-item>
+				<ion-input type="text" placeholder="Matricula" [(ngModel)]="alunoASerCadastrado.matricula"></ion-input>
+			</ion-item>
+			<ion-item>
+				<ion-input type="text" placeholder="Email" [(ngModel)]="alunoASerCadastrado.email"></ion-input>
+			</ion-item>
+			<ion-item>
+				<ion-input type="text" placeholder="Nome do aluno" [(ngModel)]="alunoASerCadastrado.nome"></ion-input>
+			</ion-item>
+			<ion-item>
+				<ion-input type="text" placeholder="Idade" [(ngModel)]="alunoASerCadastrado.idade"></ion-input>
+			</ion-item>
+			<ion-item>
+				<ion-label>Sexo</ion-label>
+				<ion-select [(ngModel)]="alunoASerCadastrado.sexo" interface="action-sheet" cancelText="Cancelar">
+					<ion-option value="m">Masculino</ion-option>
+					<ion-option value="f">Feminino</ion-option>
+					<ion-option value="o">Outros</ion-option>
+				</ion-select>
+			</ion-item>
+		</ion-card-content>
+	</ion-card>
+
+	<ion-card>
+		<ion-card-content>
+			<ion-buttons end>
+				<button ion-button (click)="cadastrarAlunos()"> Cadastrar</button>
+			</ion-buttons>
+		</ion-card-content>
+	</ion-card>
+</ion-content>
+
+<ion-footer>
+	<ion-navbar color="primary">
+	</ion-navbar>
+</ion-footer>
