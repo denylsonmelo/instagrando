@@ -5,4 +5,5 @@ export class Aluno {
 	email: string;
 	sexo: string;
 	idade: string;
+	urlImagem: string;
 }

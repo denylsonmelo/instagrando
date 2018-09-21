@@ -1,3 +1,4 @@
+import { GravatarImageProvider } from './../../providers/gravatar-image/gravatar-image.service';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
@@ -25,12 +26,20 @@ export class ListagemPage {
 		this.navCtrl.push(CadastroPage);
 	}
 
-	constructor(public navCtrl: NavController, public navParams: NavParams) {
+	constructor(public navCtrl: NavController, public navParams: NavParams, public service : GravatarImageProvider) {
 	}
 
 	ionViewDidLoad() {
 		this.alunos = JSON.parse(localStorage.getItem("listaAlunos")) || [];
 		this.deveMostrarAlunos = this.alunos.length > 0 ? true : false;
+
+		this.alunos.forEach(aluno => aluno.urlImagem = "assets/imgs/nophoto.png");
+
+		if(this.deveMostrarAlunos){
+			this.alunos.forEach(aluno => {
+				this.service.pegarImagem(aluno.email).subscribe(url => console.log(url));
+			});
+		}
 	}
 
 }

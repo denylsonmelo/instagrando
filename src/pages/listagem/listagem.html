@@ -16,13 +16,24 @@
 
 <ion-content padding>
 
-	<div *ngIf="deveMostrarAlunos; else avisoSemAlunos">
-		<ion-list>
-			<button ion-item *ngFor="let aluno of alunos" (click)="visualizar(this.aluno)" > {{ aluno.id + " - " + aluno.nome  + " : " + aluno.email}} </button>
-		</ion-list>
-	</div>
-	<ng-template #avisoSemAlunos>
-		<h2> nenhum aluno cadastrado </h2>
-	</ng-template>
+	<ion-card>
+		<ion-card-content>
+			<div *ngIf="deveMostrarAlunos; else avisoSemAlunos">
+				<ion-list>
+					<button ion-item *ngFor="let aluno of alunos" (click)="visualizar(this.aluno)">
+						<ion-thumbnail item-start>
+							<img [src]="aluno.urlImagem">
+						</ion-thumbnail>
+						<h2><strong>Nome:</strong> {{aluno.nome }} </h2>
+						<h3><strong>Email:</strong> {{aluno.email }} </h3>
+						<p><strong>Matricula:</strong> {{ aluno.matricula }} </p>
+					</button>
+				</ion-list>
+			</div>
+			<ng-template #avisoSemAlunos>
+				<h2> nenhum aluno cadastrado </h2>
+			</ng-template>
+		</ion-card-content>
+	</ion-card>
 
 </ion-content>
