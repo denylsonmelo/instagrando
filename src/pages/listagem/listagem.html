@@ -16,24 +16,35 @@
 
 <ion-content padding>
 
-	<ion-card>
-		<ion-card-content>
-			<div *ngIf="deveMostrarAlunos; else avisoSemAlunos">
-				<ion-list>
-					<button ion-item *ngFor="let aluno of alunos" (click)="visualizar(this.aluno)">
-						<ion-thumbnail item-start>
-							<img [src]="aluno.urlImagem">
-						</ion-thumbnail>
-						<h2><strong>Nome:</strong> {{aluno.nome }} </h2>
-						<h3><strong>Email:</strong> {{aluno.email }} </h3>
-						<p><strong>Matricula:</strong> {{ aluno.matricula }} </p>
-					</button>
-				</ion-list>
-			</div>
-			<ng-template #avisoSemAlunos>
-				<h2> nenhum aluno cadastrado </h2>
-			</ng-template>
-		</ion-card-content>
-	</ion-card>
+	<ion-grid>
+		<ion-row>
+			<ion-col col-12	col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-4 offset-lg-4>
+				<ion-card>
+					<ion-card-content>
+						<div *ngIf="deveMostrarAlunos; else avisoSemAlunos">
+							<ion-list>
+								<button ion-item *ngFor="let aluno of alunos" (click)="visualizar(this.aluno)">
+									<ion-thumbnail item-start>
+										<img [src]="aluno.urlImagem">
+									</ion-thumbnail>
+									<h2><strong>Nome:</strong> {{aluno.nome }} </h2>
+									<h3><strong>Email:</strong> {{aluno.email }} </h3>
+									<p><strong>Matricula:</strong> {{ aluno.matricula }} </p>
+								</button>
+							</ion-list>
+						</div>
+						<ng-template #avisoSemAlunos>
 
+							<div class="sem-usuarios">
+								<ion-thumbnail>
+									<img src="assets/imgs/no-users-found.png">
+								</ion-thumbnail>
+								<h2> nenhum aluno cadastrado </h2>
+							</div>
+						</ng-template>
+					</ion-card-content>
+				</ion-card>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
 </ion-content>
