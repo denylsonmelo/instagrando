@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,  } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
@@ -10,17 +10,13 @@ import 'rxjs/add/operator/retry';
 @Injectable()
 export class GravatarImageProvider {
 
-	gravatarUrl: any = "https://www.gravatar.com/avatar/";
+	gravatarUrl: string = "https://gravatar.com/";
+	//jsonPlaceHolder: string = "https://jsonplaceholder.typicode.com/todos/";
 
-	public pegarImagem(email: any): Observable<any> {
-
-
-		//this.gravatarUrl + md5(email.toLowerCase(), 'hex')
-		return this.http.get("https://jsonplaceholder.typicode.com/todos/" + email)
+	public pegarImagem(email: string): Observable<any> {
+		return this.http.get(`${this.gravatarUrl}${md5(email.toLowerCase(), 'hex')}.json`)
 			.retry(2)
 			.map(response => response);
-
-
 	}
 
 	constructor(public http: HttpClient) {

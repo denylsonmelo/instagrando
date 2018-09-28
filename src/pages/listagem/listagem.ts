@@ -37,8 +37,8 @@ export class ListagemPage {
 		if(this.deveMostrarAlunos){
 			this.alunos.forEach(aluno => {
 				aluno.urlImagem = "assets/imgs/nophoto.png";
-				this.service.pegarImagem(aluno.id)
-					.subscribe(data => aluno.nome = data.title);
+				this.service.pegarImagem(aluno.email)
+					.subscribe(data => aluno.urlImagem = data.entry[0].thumbnailUrl);
 			});
 		}
 	}
