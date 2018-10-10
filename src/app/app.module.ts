@@ -9,11 +9,6 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { MyApp } from './app.component';
 
-import { AboutPage } from '../pages/about/about';
-import { ContactPage } from '../pages/contact/contact';
-import { HomePage } from '../pages/home/home';
-import { TabsPage } from '../pages/tabs/tabs';
-
 import { ListagemPage } from '../pages/listagem/listagem';
 import { CadastroPage } from './../pages/cadastro/cadastro';
 
@@ -23,10 +18,6 @@ import { ImageProvider } from '../providers/image/image.service';
 @NgModule({
 	declarations: [
 		MyApp,
-		AboutPage,
-		ContactPage,
-		HomePage,
-		TabsPage,
 		CadastroPage,
 		ListagemPage
 	],
@@ -41,10 +32,6 @@ import { ImageProvider } from '../providers/image/image.service';
 	bootstrap: [IonicApp],
 	entryComponents: [
 		MyApp,
-		AboutPage,
-		ContactPage,
-		HomePage,
-		TabsPage,
 		CadastroPage,
 		ListagemPage
 	],

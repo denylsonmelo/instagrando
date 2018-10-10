@@ -11,7 +11,7 @@ import { ListagemPage } from '../pages/listagem/listagem';
 })
 export class MyApp {
 
-  rootPage:any = ListagemPage;
+  rootPage:any = CadastroPage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {
