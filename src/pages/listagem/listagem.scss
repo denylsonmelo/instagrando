@@ -1,12 +1,18 @@
 page-listagem {
 
-	.sem-usuarios{
+	.com-usuarios {
+		button{
+			padding-left: 0;
+		}
+	}
 
-		ion-thumbnail{
+	.sem-usuarios {
+
+		ion-thumbnail {
 			background-color: tomato;
 		}
 
-		h2{
+		h2 {
 			text-align: center;
 			font-size: 1.5em;
 			font-weight: bold;

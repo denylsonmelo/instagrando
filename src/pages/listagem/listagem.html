@@ -21,7 +21,7 @@
 			<ion-col col-12	col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-4 offset-lg-4>
 				<ion-card>
 					<ion-card-content>
-						<div *ngIf="deveMostrarAlunos; else avisoSemAlunos">
+						<div *ngIf="deveMostrarAlunos; else avisoSemAlunos" class="com-usuarios">
 							<ion-list>
 								<button ion-item *ngFor="let aluno of alunos" (click)="visualizar(this.aluno)">
 									<ion-thumbnail item-start>

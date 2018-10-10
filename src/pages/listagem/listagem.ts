@@ -1,6 +1,9 @@
-import { GravatarImageProvider } from './../../providers/gravatar-image/gravatar-image.service';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
+
+import { GravatarImageProvider } from './../../providers/gravatar-image/gravatar-image.service';
+import { ImageProvider } from './../../providers/image/image.service';
 
 import { CadastroPage } from './../cadastro/cadastro';
 
@@ -16,7 +19,7 @@ export class ListagemPage {
 	deveMostrarAlunos: boolean = false;
 	alunos: Array<Aluno>;
 
-	visualizar(aluno: Aluno): void{
+	visualizar(aluno: Aluno): void {
 		this.navCtrl.push(CadastroPage, {
 			alunoASerEditado: aluno
 		});
@@ -26,21 +29,38 @@ export class ListagemPage {
 		this.navCtrl.push(CadastroPage);
 	}
 
-	constructor(public navCtrl: NavController, public navParams: NavParams, public service : GravatarImageProvider) {
-	}
-
 	ionViewWillEnter() {
 
-		this.alunos = JSON.parse(localStorage.getItem("listaAlunos")) || [];
-		this.deveMostrarAlunos = this.alunos.length > 0 ? true : false;
+		this.storage.get("listaAlunos")
+			.then(data => {
+				this.alunos = data || [];
+				this.deveMostrarAlunos = this.alunos.length > 0 ? true : false;
 
-		if(this.deveMostrarAlunos){
-			this.alunos.forEach(aluno => {
-				aluno.urlImagem = "assets/imgs/nophoto.png";
-				this.service.pegarImagem(aluno.email)
-					.subscribe(data => aluno.urlImagem = data.entry[0].thumbnailUrl);
-			});
-		}
+
+				if (this.deveMostrarAlunos) {
+					this.alunos.forEach(aluno => {
+						aluno.urlImagem = "assets/imgs/nophoto.png";
+						this.gravatarService.pegarImagem(aluno.email)
+							.subscribe((data) => {
+								this.imageService.getBase64ImageFromURL(data.entry[0].thumbnailUrl)
+									.subscribe((data: any) => {
+										if (data !== this.gravatarService.imagemPadrao()) {
+											aluno.urlImagem = "data:image/png;base64," + data;
+										}
+									});
+							});
+					});
+				}
+			})
+			.catch(data => console.log("entrou no catch"));
+	}
+
+	constructor(
+		public navCtrl: NavController,
+		public navParams: NavParams,
+		public gravatarService: GravatarImageProvider,
+		public imageService: ImageProvider,
+		private storage: Storage) {
 	}
 
 }
