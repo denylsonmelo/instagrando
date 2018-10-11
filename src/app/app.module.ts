@@ -1,6 +1,7 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { IonicStorageModule } from '@ionic/storage';
@@ -27,7 +28,8 @@ import { ImageProvider } from '../providers/image/image.service';
 		IonicModule.forRoot(MyApp),
 		IonicStorageModule.forRoot({
 			name: 'cadastro-alunos__db'
-		})
+		}),
+		ReactiveFormsModule
 	],
 	bootstrap: [IonicApp],
 	entryComponents: [
