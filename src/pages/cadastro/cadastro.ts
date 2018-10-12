@@ -1,8 +1,8 @@
+import { ArmazenamentoProvider } from './../../providers/armazenamento/armazenamento.service';
 import { Component } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
-import { Storage } from '@ionic/storage';
 
 import { Aluno } from './../../models/aluno.model';
 
@@ -56,21 +56,7 @@ export class CadastroPage {
 
 		console.log(this.alunoASerCadastrado);
 
-		this.storage.get("proximoId")
-			.then(valor => {
-				this.storage.get("listaAlunos")
-					.then(lista => {
-						this.alunoASerCadastrado.id = valor || 1;
-						let array = lista || [];
-						array.push(this.alunoASerCadastrado);
-						this.storage.set("proximoId", (valor + 1))
-							.then(idSalvo => {
-								this.storage.set("listaAlunos", array);
-								toast.dismiss();
-
-							});
-					});
-			});
+		this.armazenamento.inserir(this.alunoASerCadastrado);
 
 		this.inicializarAluno();
 	}
@@ -86,9 +72,8 @@ export class CadastroPage {
 	constructor(
 		public navCtrl: NavController,
 		public navParams: NavParams,
-		private storage: Storage,
 		public alertCtrl: AlertController,
-		private builder: FormBuilder) {
+		public armazenamento: ArmazenamentoProvider) {
 	}
 
 	ngOnInit() {

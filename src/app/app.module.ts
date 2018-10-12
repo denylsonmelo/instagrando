@@ -13,7 +13,7 @@ import { MyApp } from './app.component';
 
 import { GravatarImageProvider } from '../providers/gravatar-image/gravatar-image.service';
 import { ImageProvider } from '../providers/image/image.service';
-import { ArmazenamentoProvider } from '../providers/armazenamento/armazenamento';
+import { ArmazenamentoProvider } from '../providers/armazenamento/armazenamento.service';
 
 @NgModule({
 	declarations: [
@@ -41,7 +41,7 @@ import { ArmazenamentoProvider } from '../providers/armazenamento/armazenamento'
 		{ provide: LocationStrategy, useClass: PathLocationStrategy },
 		GravatarImageProvider,
 		ImageProvider,
-    ArmazenamentoProvider
+		ArmazenamentoProvider
 	]
 })
 export class AppModule { }
