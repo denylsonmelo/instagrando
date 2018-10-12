@@ -43,38 +43,36 @@ export class CadastroPage {
 
 	cadastrarAlunos() {
 
-		console.log(this.alunoASerCadastrado)
-		console.log(this.formulario)
+		let toast = this.alertCtrl.create({
+			message: 'Cadastrando Usuário ....',
+		});
 
+		toast.onDidDismiss(() => {
+			console.log('Dismissed toast');
+			this.voltar();
+		});
 
-		// let toast = this.alertCtrl.create({
-		// 	message: 'Cadastrando Usuário ....',
-		// });
+		toast.present();
 
-		// toast.onDidDismiss(() => {
-		// 	console.log('Dismissed toast');
-		// 	this.voltar();
-		// });
+		console.log(this.alunoASerCadastrado);
 
-		// toast.present();
+		this.storage.get("proximoId")
+			.then(valor => {
+				this.storage.get("listaAlunos")
+					.then(lista => {
+						this.alunoASerCadastrado.id = valor || 1;
+						let array = lista || [];
+						array.push(this.alunoASerCadastrado);
+						this.storage.set("proximoId", (valor + 1))
+							.then(idSalvo => {
+								this.storage.set("listaAlunos", array);
+								toast.dismiss();
 
-		// this.storage.get("proximoId")
-		// 	.then(valor => {
-		// 		this.storage.get("listaAlunos")
-		// 			.then(lista => {
-		// 				this.alunoASerCadastrado.id = valor || 1;
-		// 				let array = lista || [];
-		// 				array.push(this.alunoASerCadastrado);
-		// 				this.storage.set("proximoId", (valor + 1))
-		// 					.then(idSalvo => {
-		// 						this.storage.set("listaAlunos", array);
-		// 						toast.dismiss();
+							});
+					});
+			});
 
-		// 					});
-		// 			});
-		// 	});
-
-		//this.inicializarAluno();
+		this.inicializarAluno();
 	}
 
 	private voltar() {

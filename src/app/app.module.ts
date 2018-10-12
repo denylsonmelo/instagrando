@@ -2,6 +2,7 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { LocationStrategy, PathLocationStrategy } from '@angular/common';
 
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { IonicStorageModule } from '@ionic/storage';
@@ -10,22 +11,20 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { MyApp } from './app.component';
 
-import { ListagemPage } from '../pages/listagem/listagem';
-import { CadastroPage } from './../pages/cadastro/cadastro';
-
 import { GravatarImageProvider } from '../providers/gravatar-image/gravatar-image.service';
 import { ImageProvider } from '../providers/image/image.service';
+import { ArmazenamentoProvider } from '../providers/armazenamento/armazenamento';
 
 @NgModule({
 	declarations: [
 		MyApp,
-		CadastroPage,
-		ListagemPage
 	],
 	imports: [
 		BrowserModule,
 		HttpClientModule,
-		IonicModule.forRoot(MyApp),
+		IonicModule.forRoot(MyApp, {
+			preloadModules: true
+		}),
 		IonicStorageModule.forRoot({
 			name: 'cadastro-alunos__db'
 		}),
@@ -34,15 +33,15 @@ import { ImageProvider } from '../providers/image/image.service';
 	bootstrap: [IonicApp],
 	entryComponents: [
 		MyApp,
-		CadastroPage,
-		ListagemPage
 	],
 	providers: [
 		StatusBar,
 		SplashScreen,
 		{ provide: ErrorHandler, useClass: IonicErrorHandler },
+		{ provide: LocationStrategy, useClass: PathLocationStrategy },
 		GravatarImageProvider,
-		ImageProvider
+		ImageProvider,
+    ArmazenamentoProvider
 	]
 })
 export class AppModule { }

@@ -5,8 +5,6 @@ import { Storage } from '@ionic/storage';
 import { GravatarImageProvider } from './../../providers/gravatar-image/gravatar-image.service';
 import { ImageProvider } from './../../providers/image/image.service';
 
-import { CadastroPage } from './../cadastro/cadastro';
-
 import { Aluno } from './../../models/aluno.model';
 
 @IonicPage()
@@ -20,13 +18,13 @@ export class ListagemPage {
 	alunos: Array<Aluno>;
 
 	visualizar(aluno: Aluno): void {
-		this.navCtrl.push(CadastroPage, {
+		this.navCtrl.push('CadastroPage', {
 			alunoASerEditado: aluno
 		});
 	}
 
 	irParaPaginaDeCadastro() {
-		this.navCtrl.push(CadastroPage);
+		this.navCtrl.push('CadastroPage');
 	}
 
 	ionViewWillEnter() {
