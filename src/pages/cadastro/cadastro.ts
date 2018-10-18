@@ -1,7 +1,7 @@
 import { ArmazenamentoProvider } from './../../providers/armazenamento/armazenamento.service';
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Alert } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 
 import { Aluno } from './../../models/aluno.model';
@@ -41,22 +41,26 @@ export class CadastroPage {
 	});
 	alunoASerCadastrado: Aluno;
 
-	cadastrarAlunos() {
-
-		let toast = this.alertCtrl.create({
+	prepararAlert(): Alert {
+		let alert = this.alertCtrl.create({
 			message: 'Cadastrando Usuário ....',
 		});
 
-		toast.onDidDismiss(() => {
-			console.log('Dismissed toast');
+		alert.onDidDismiss(() => {
 			this.voltar();
 		});
 
-		toast.present();
+		alert.present();
 
-		console.log(this.alunoASerCadastrado);
+		return alert;
+	}
 
-		this.armazenamento.inserir(this.alunoASerCadastrado);
+	cadastrarAlunos() {
+		let alert = this.prepararAlert();
+		this.armazenamento.inserir(this.alunoASerCadastrado)
+			.then((aluno: Aluno) => {
+				alert.dismiss();
+			});
 
 		this.inicializarAluno();
 	}

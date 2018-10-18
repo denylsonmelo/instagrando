@@ -4,6 +4,7 @@ import { Storage } from '@ionic/storage';
 
 import { GravatarImageProvider } from './../../providers/gravatar-image/gravatar-image.service';
 import { ImageProvider } from './../../providers/image/image.service';
+import { ArmazenamentoProvider } from './../../providers/armazenamento/armazenamento.service';
 
 import { Aluno } from './../../models/aluno.model';
 
@@ -29,28 +30,41 @@ export class ListagemPage {
 
 	ionViewWillEnter() {
 
-		this.storage.get("listaAlunos")
-			.then(data => {
-				this.alunos = data || [];
-				this.deveMostrarAlunos = this.alunos.length > 0 ? true : false;
-
-
-				if (this.deveMostrarAlunos) {
-					this.alunos.forEach(aluno => {
-						aluno.urlImagem = "assets/imgs/nophoto.png";
-						this.gravatarService.pegarImagem(aluno.email)
-							.subscribe((data) => {
-								this.imageService.getBase64ImageFromURL(data.entry[0].thumbnailUrl)
-									.subscribe((data: any) => {
-										if (data !== this.gravatarService.imagemPadrao()) {
-											aluno.urlImagem = "data:image/png;base64," + data;
-										}
-									});
-							});
-					});
-				}
+		this.alunos = [];
+		this.amazenamento.pegarChavesAlunos()
+			.then((chaves: Array<string>) => {
+				chaves.forEach((chave) => {
+					this.amazenamento.pegarAluno(chave)
+						.then((aluno: Aluno) =>{
+							this.alunos.push(aluno);
+							this.deveMostrarAlunos = this.alunos.length > 0 ? true : false;
+						});
+				});
 			})
 			.catch(data => console.log("entrou no catch"));
+
+		// this.storage.get("listaAlunos")
+		// 	.then(data => {
+		// 		this.alunos = data || [];
+		// 		this.deveMostrarAlunos = this.alunos.length > 0 ? true : false;
+
+
+		// 		if (this.deveMostrarAlunos) {
+		// 			this.alunos.forEach(aluno => {
+		// 				aluno.urlImagem = "assets/imgs/nophoto.png";
+		// 				this.gravatarService.pegarImagem(aluno.email)
+		// 					.subscribe((data) => {
+		// 						this.imageService.getBase64ImageFromURL(data.entry[0].thumbnailUrl)
+		// 							.subscribe((data: any) => {
+		// 								if (data !== this.gravatarService.imagemPadrao()) {
+		// 									aluno.urlImagem = "data:image/png;base64," + data;
+		// 								}
+		// 							});
+		// 					});
+		// 			});
+		// 		}
+		// 	})
+		// 	.catch(data => console.log("entrou no catch"));
 	}
 
 	constructor(
@@ -58,7 +72,7 @@ export class ListagemPage {
 		public navParams: NavParams,
 		public gravatarService: GravatarImageProvider,
 		public imageService: ImageProvider,
-		private storage: Storage) {
+		private amazenamento: ArmazenamentoProvider) {
 	}
 
 }
