@@ -16,7 +16,7 @@ import { Aluno } from './../../models/aluno.model';
 export class ListagemPage {
 
 	deveMostrarAlunos: boolean = false;
-	alunos: Array<Aluno>;
+	alunosDaPagina: Array<Aluno>;
 
 	visualizar(aluno: Aluno): void {
 		this.navCtrl.push('CadastroPage', {
@@ -30,39 +30,28 @@ export class ListagemPage {
 
 	ionViewWillEnter() {
 
-		this.alunos = [];
-		this.amazenamento.pegarChavesAlunos()
-			.then((chaves: Array<string>) => {
-				chaves.forEach((chave) => {
-					this.amazenamento.pegarAluno(chave)
-						.then((aluno: Aluno) =>{
-							this.alunos.push(aluno);
-							this.deveMostrarAlunos = this.alunos.length > 0 ? true : false;
-						});
-				});
+		this.alunosDaPagina = [];
+		this.amazenamento.pegarAlunos()
+			.then((alunosQueVemDoServico: Array<Aluno>) => {
+				this.alunosDaPagina = alunosQueVemDoServico;
+				this.deveMostrarAlunos = this.alunosDaPagina.length > 0 ? true : false;
+				if (this.deveMostrarAlunos) {
+					this.alunosDaPagina.forEach(aluno => {
+						aluno.urlImagem = "assets/imgs/nophoto.png";
+						this.gravatarService.pegarImagem(aluno.email)
+							.subscribe((data) => {
+								this.imageService.getBase64ImageFromURL(data.entry[0].thumbnailUrl)
+									.subscribe((data: any) => {
+										if (data !== this.gravatarService.imagemPadrao()) {
+											aluno.urlImagem = "data:image/png;base64;" + data;
+										}
+									});
+							});
+					});
+				}
 			})
-			.catch(data => console.log("entrou no catch"));
+			.catch(data => console.log(data));
 
-		// this.storage.get("listaAlunos")
-		// 	.then(data => {
-		// 		this.alunos = data || [];
-		// 		this.deveMostrarAlunos = this.alunos.length > 0 ? true : false;
-
-
-		// 		if (this.deveMostrarAlunos) {
-		// 			this.alunos.forEach(aluno => {
-		// 				aluno.urlImagem = "assets/imgs/nophoto.png";
-		// 				this.gravatarService.pegarImagem(aluno.email)
-		// 					.subscribe((data) => {
-		// 						this.imageService.getBase64ImageFromURL(data.entry[0].thumbnailUrl)
-		// 							.subscribe((data: any) => {
-		// 								if (data !== this.gravatarService.imagemPadrao()) {
-		// 									aluno.urlImagem = "data:image/png;base64," + data;
-		// 								}
-		// 							});
-		// 					});
-		// 			});
-		// 		}
 		// 	})
 		// 	.catch(data => console.log("entrou no catch"));
 	}

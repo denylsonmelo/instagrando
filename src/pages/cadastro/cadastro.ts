@@ -41,6 +41,18 @@ export class CadastroPage {
 	});
 	alunoASerCadastrado: Aluno;
 
+	deletar(){
+		// apresentar loadind ==> apagando
+		this.armazenamento.apagarAluno(this.alunoASerCadastrado.id)
+			.then((valor: boolean) =>{
+				if(valor){
+					// metodo de exibir um toast. alert, loading
+					// alert.dimiss
+					this.navCtrl.pop()
+				}
+			});
+	}
+
 	prepararAlert(): Alert {
 		let alert = this.alertCtrl.create({
 			message: 'Cadastrando Usuário ....',

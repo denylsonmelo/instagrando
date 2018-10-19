@@ -20,7 +20,6 @@ export class GravatarImageProvider {
 	}
 
 	constructor(public http: HttpClient) {
-		console.log('Hello GravatarImageProvider Provider');
 	}
 
 	public imagemPadrao(): string{

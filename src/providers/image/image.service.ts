@@ -38,7 +38,6 @@ export class ImageProvider {
 	}
 
 	constructor(public http: HttpClient) {
-		console.log('Hello ImageProvider Provider');
 	}
 
 }

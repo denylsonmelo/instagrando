@@ -2,38 +2,51 @@ import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
 
 import { Aluno } from './../../models/aluno.model';
+import { stringify } from '@angular/core/src/util';
 
 @Injectable()
 export class ArmazenamentoProvider {
 
-	public pegarAluno(chave: string): Promise<Aluno>{
-		return this.storage.get(chave);
+	public apagarAluno(chave: string) {
+		return this.storage.remove(`aluno.${chave}`)
+			.then(() => true);
+
 	}
 
-	public pegarChavesAlunos(): Promise<any> {
-		return this.storage.keys()
-			.then((chaves: Array<string>) => {
-				let chavesCertas = [];
-				chaves.forEach(chave => {
-					if(chave.startsWith("aluno.")){
-						chavesCertas.push(chave);
+	public pegarAlunos(): Promise<Array<Aluno>> {
+
+		return this.storage.ready()
+			.then((localForage: LocalForage) => {
+				let alunos: Array<Aluno> = [];
+				return this.storage.forEach((value: Aluno, key: string, iterationNumber: Number) => {
+					if (key.indexOf("aluno.") > -1) {
+						alunos.push(value);
 					}
-				});
-				// chaves
-				// 	.map(chaveDoMap => chaveDoMap)
-				// 	.filter(chaveDoFilter => {
-				// 		chaveDoFilter.startsWith("aluno.");
-				// 	});
-				return chavesCertas;
+				}).then(() =>
+					alunos
+				);
 			});
+
+		// return this.storage.keys()
+		// 	.then((chaves: Array<string>) => {
+		// 		let chavesCertas = [];
+		// 		chaves.forEach(chave => {
+		// 			if (chave.startsWith("aluno.")) {
+		// 				chavesCertas.push(chave);
+		// 			}
+		// 		});
+		// 		// chaves
+		// 		// 	.map(chaveDoMap => chaveDoMap)
+		// 		// 	.filter(chaveDoFilter => {
+		// 		// 		chaveDoFilter.startsWith("aluno.");
+		// 		// 	});
+		// 		return chavesCertas;
+		// 	});
 	}
 
 	public inserir(aluno: Aluno): Promise<any> {
-		return this.pegarProximoId()
-			.then((valor) => {
-				aluno.id = valor
-				return this.storage.set(`aluno.${btoa(aluno.email)}`, aluno);
-			});
+		aluno.id = btoa(aluno.email);
+		return this.storage.set(`aluno.${aluno.id}`, aluno);
 	}
 
 	private pegarProximoId(): Promise<number> {
@@ -42,7 +55,6 @@ export class ArmazenamentoProvider {
 	}
 
 	constructor(private storage: Storage, ) {
-		console.log('Hello ArmazenamentoProvider Provider');
 	}
 
 }

@@ -23,7 +23,7 @@
 					<ion-card-content>
 						<div *ngIf="deveMostrarAlunos; else avisoSemAlunos" class="com-usuarios">
 							<ion-list>
-								<button ion-item *ngFor="let aluno of alunos" (click)="visualizar(this.aluno)">
+								<button ion-item *ngFor="let aluno of alunosDaPagina" (click)="visualizar(this.aluno)">
 									<ion-thumbnail item-start>
 										<img [src]="aluno.urlImagem">
 									</ion-thumbnail>
