@@ -5,4 +5,11 @@ import { Component } from '@angular/core';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss']
 })
-export class HomePage {}
+export class HomePage {
+
+  slideOpts = {
+    effect: 'flip',
+    slidesPerView: 6,
+    spaceBetween: 30
+  };
+}

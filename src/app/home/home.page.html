@@ -1,10 +1,84 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Home</ion-title>
+
+    <ion-buttons slot="start">
+      <ion-button>
+        <ion-icon slot="icon-only" name="camera"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <img src="assets/img/instagrando1.png" alt="logo do instagrando">
+
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon slot="icon-only" name="send"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs">docs</a> will be your guide.</p>
+
+  <ion-slides [options]="slideOpts">
+    <ion-slide>
+      <ion-avatar>
+        <img src="assets/icon/favicon.png">
+      </ion-avatar>
+    </ion-slide>
+    <ion-slide>
+      <ion-avatar>
+        <img src="assets/icon/favicon.png">
+      </ion-avatar>
+    </ion-slide>
+    <ion-slide>
+      <ion-avatar>
+        <img src="assets/icon/favicon.png">
+      </ion-avatar>
+    </ion-slide>
+    <ion-slide>
+      <ion-avatar>
+        <img src="assets/icon/favicon.png">
+      </ion-avatar>
+    </ion-slide>
+    <ion-slide>
+      <ion-avatar>
+        <img src="assets/icon/favicon.png">
+      </ion-avatar>
+    </ion-slide>
+
+  </ion-slides>
+
+  <ion-card>
+  <ion-toolbar>
+    <ion-card-header>
+      <ion-avatar>
+        <img src="assets/icon/favicon.png">
+      </ion-avatar>
+      Card Subtitle
+      <ion-buttons slot="end">
+        <ion-button>
+          <ion-icon slot="icon-only" name="send"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-card-header>
+  </ion-toolbar>
+
+    <ion-card-content>
+      <img src="assets/img/instagrando2.png" alt="imagem do post">
+      <ion-buttons slot="start">
+          <ion-button>
+            <ion-icon slot="icon-only" name="heart-empty"></ion-icon>
+          </ion-button>
+          <ion-button>
+            <ion-icon slot="icon-only" name="chatboxes"></ion-icon>
+          </ion-button>
+          <ion-button>
+            <ion-icon slot="icon-only" name="send"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+    </ion-card-content>
+  </ion-card>
+
+
 </ion-content>
