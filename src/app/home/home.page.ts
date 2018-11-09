@@ -12,4 +12,24 @@ export class HomePage {
     slidesPerView: 6,
     spaceBetween: 30
   };
+
+  stories: Array<any> = [
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+  ];
+
+  posts: Array<any> = [
+    {}, // objeto vazio
+    {}, // objeto vazio
+    {}, // objeto vazio
+    {}, // objeto vazio
+    {}, // objeto vazio
+    {}, // objeto vazio
+  ];
 }

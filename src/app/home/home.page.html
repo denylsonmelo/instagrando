@@ -11,7 +11,7 @@
 
     <ion-buttons slot="end">
       <ion-button>
-        <ion-icon slot="icon-only" name="send"></ion-icon>
+        <ion-icon slot="icon-only" name="paper-plane"></ion-icon>
       </ion-button>
     </ion-buttons>
 
@@ -20,65 +20,61 @@
 
 <ion-content padding>
 
-  <ion-slides [options]="slideOpts">
-    <ion-slide>
-      <ion-avatar>
-        <img src="assets/icon/favicon.png">
-      </ion-avatar>
-    </ion-slide>
-    <ion-slide>
-      <ion-avatar>
-        <img src="assets/icon/favicon.png">
-      </ion-avatar>
-    </ion-slide>
-    <ion-slide>
-      <ion-avatar>
-        <img src="assets/icon/favicon.png">
-      </ion-avatar>
-    </ion-slide>
-    <ion-slide>
-      <ion-avatar>
-        <img src="assets/icon/favicon.png">
-      </ion-avatar>
-    </ion-slide>
-    <ion-slide>
-      <ion-avatar>
-        <img src="assets/icon/favicon.png">
-      </ion-avatar>
-    </ion-slide>
+  <!--<app-stories *ngFor="let videozin of stories"></app-stories>-->
 
+  <!--<ion-slides [options]="slideOpts">
+    <ion-slide *ngFor="let videozin of stories">
+      <ion-avatar>
+        <img src="assets/icon/favicon.png">
+      </ion-avatar>
+    </ion-slide>
+    
   </ion-slides>
-
-  <ion-card>
-  <ion-toolbar>
-    <ion-card-header>
-      <ion-avatar>
-        <img src="assets/icon/favicon.png">
-      </ion-avatar>
-      Card Subtitle
-      <ion-buttons slot="end">
-        <ion-button>
-          <ion-icon slot="icon-only" name="send"></ion-icon>
-        </ion-button>
-      </ion-buttons>
-    </ion-card-header>
-  </ion-toolbar>
+-->
+  
+  <ion-card *ngFor="let postzin of posts">
+    <ion-toolbar>
+      <ion-card-header>
+        <ion-avatar>
+          <img src="assets/icon/favicon.png">
+        </ion-avatar>
+        Card Subtitle
+        <ion-buttons slot="end">
+          <ion-button>
+            <ion-icon slot="icon-only" name="more"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-card-header>
+    </ion-toolbar>
 
     <ion-card-content>
       <img src="assets/img/instagrando2.png" alt="imagem do post">
       <ion-buttons slot="start">
-          <ion-button>
-            <ion-icon slot="icon-only" name="heart-empty"></ion-icon>
-          </ion-button>
-          <ion-button>
-            <ion-icon slot="icon-only" name="chatboxes"></ion-icon>
-          </ion-button>
-          <ion-button>
-            <ion-icon slot="icon-only" name="send"></ion-icon>
-          </ion-button>
-        </ion-buttons>
+        <ion-button>
+          <ion-icon slot="icon-only" name="heart-empty"></ion-icon>
+        </ion-button>
+        <ion-button>
+          <ion-icon slot="icon-only" name="chatboxes"></ion-icon>
+        </ion-button>
+        <ion-button>
+          <ion-icon slot="icon-only" name="paper-plane"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+      <ion-buttons slot="end">
+        <ion-button>
+          <ion-icon slot="icon-only" name="bookmark"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+
+      <p>6849 curtidas</p>
+      <p>pessoas comentando</p>
+      <p>pessoas comentando</p>
+      <p>pessoas comentando</p>
+      <p>pessoas comentando</p>
+      <small>há 3 horas</small>
     </ion-card-content>
   </ion-card>
-
+ 
+ 
 
 </ion-content>
