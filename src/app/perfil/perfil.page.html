@@ -1,0 +1,86 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>perfil</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <div>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+
+          <ion-avatar>
+            <img src="assets/icon/favicon.png">
+          </ion-avatar>
+        </ion-col>
+        <ion-col>
+          <ion-row>
+            <ion-col>texto</ion-col>
+            <ion-col>texto</ion-col>
+            <ion-col>texto</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-button>
+              butao
+            </ion-button>
+            <ion-button>
+              <ion-icon slot="icon-only" name="paper-plane"></ion-icon>
+            </ion-button>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <div>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+  </div>
+  <div>
+    <ion-segment (ionChange)="segmentChanged($event)">
+      <ion-segment-button value="camera" href="#gridFotos" checked>
+        <ion-icon name="camera"></ion-icon>
+      </ion-segment-button>
+      <ion-segment-button value="camera2" href="#naoGridFotos">
+        <ion-icon name="camera"></ion-icon>
+      </ion-segment-button>
+      <ion-segment-button value="camera3">
+        <ion-icon name="camera"></ion-icon>
+      </ion-segment-button>
+      <ion-segment-button value="bookmark">
+        <ion-icon name="bookmark"></ion-icon>
+      </ion-segment-button>
+  <div id="gridFotos">
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-thumbnail>
+          <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+        </ion-thumbnail>
+      </ion-col>
+      <ion-col>
+        <ion-thumbnail>
+          <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+        </ion-thumbnail>
+      </ion-col>
+      <ion-col>
+        <ion-thumbnail>
+          <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+        </ion-thumbnail>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</div>
+<div id="naoGridFotos">
+  texto aparecendo
+</div>
+</ion-segment>
+
+</div>
+
+
+
+</ion-content>

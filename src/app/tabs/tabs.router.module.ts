@@ -5,6 +5,7 @@ import { TabsPage } from './tabs.page';
 import { HomePage } from '../home/home.page';
 import { AboutPage } from '../about/about.page';
 import { ContactPage } from '../contact/contact.page';
+import { PerfilPage } from '../perfil/perfil.page';
 
 const routes: Routes = [
   {
@@ -25,6 +26,11 @@ const routes: Routes = [
         path: 'about',
         outlet: 'about',
         component: AboutPage
+      },
+      {
+        path: 'perfil',
+        outlet: 'perfil',
+        component: PerfilPage
       },
       {
         path: 'contact',
